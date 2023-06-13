@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Mascota</title>
+</head>
+<body>
+
+    <div style="text-align: center;">
+        <h2>Formulario</h2> <br>
+        <form action="perrosAdd" method="POST">
+            {% csrf_token %}
+
+            <pre> Rut:      <input type="text" name="rut">  </pre>
+            <pre> Nombre:                   <input type="text" name="Nombre">   </pre>
+            <pre> Apellido P:               <input type="text" name="paterno">  </pre>
+            <pre> Fecha de nacimiento:      <input type="text" name="fechaNac"> </pre>
+            <pre> Genero                    <input type="text" name="genero">   </pre>
+                {% for genero in generos %}
+                <option value="{{genero.id_genero}}" >{{genero.genero}}</option>
+                {% endfor %}
+            
+            <input type="submit" name="opcion" value="Agregar">
+
+        </form> <br><br>
+        <a href="{% url 'crud' %}"> Volver </a>
+        <br>
+        <div id="idMensajes">
+            {% if mensaje %}
+            {{mensaje}}
+            {% endif %}
+
+        </div>
+
+    </div>
+    
+</body>
+</html>
